@@ -1,0 +1,32 @@
+@font-face {
+  font-family: Inter;
+  src: url(./font/inter/Inter-Regular.ttf);
+}
+
+body {
+  margin: 0;
+  font-family: Inter !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+
+
+:root{
+  --color-a: #094fa3;
+  --color-b: #222222;
+  --color-danger: #ee3b33;
+  --ft-12: 12px;
+  --ft-13: 13px;
+  --ft-14: 14px;
+  --ft-15: 15px;
+  --ft-16: 16px;
+  --ft-17: 17px;
+  --ft-18: 18px;
+  --ft-19: 19px;
+  --ft-20: 20px;
+}

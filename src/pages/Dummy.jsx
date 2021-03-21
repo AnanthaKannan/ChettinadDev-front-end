@@ -8,12 +8,12 @@ import Typography from '@material-ui/core/Typography';
 
 export default function Dummy() {
     return (
-        <div>
-           <MiniDrawer>
+        <div className='container'>
+           {/* <MiniDrawer> */}
 
            <Typography variant="h6" className='mb-2'> Product List</Typography>
             <AgGirdReact />
-            </MiniDrawer>
+            {/* </MiniDrawer> */}
         </div>
     )
 }

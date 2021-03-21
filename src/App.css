@@ -9,16 +9,29 @@
     --ft-lg: 16px;
   }
 
-  .require::after{
-    content: '*';
-    color: var(--color-danger);
-    font: var(--ft-sm);
-  }
+.require::after{
+  content: '*';
+  color: var(--color-danger);
+  font: var(--ft-sm);
+}
 
-  .ag-theme-alpine .ag-header-cell, .ag-theme-alpine .ag-header-group-cell{
-    background-color: var(--color-primary) !important;
-    color: var(--color-white);
-  }
-  .ag-theme-alpine .ag-row {
-    font-size: 12px;
-  }
+.ag-theme-alpine .ag-header-cell, .ag-theme-alpine .ag-header-group-cell{
+  background-color: var(--color-primary) !important;
+  color: var(--color-white);
+}
+
+.ag-theme-alpine .ag-row {
+  font-size: 12px;
+}
+
+.txt-sm{
+  font-size: var(--ft-md);
+}
+
+.txt-lg{
+  font-size: var(--ft-lg);
+}
+
+.point{
+  cursor: pointer;
+}

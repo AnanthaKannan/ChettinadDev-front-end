@@ -25,11 +25,21 @@ export const deleteVendorById = (data) => {
     return http.delete(`${api}/deleteVendorById`, data);
 }
 
+export const getProduct = () => {
+    return http.get(`${api}/getProduct`);
+}
+
+export const getStockDetailsByProductId = (data) => {
+    return http.get(`${api}/getStockDetailsByProductId`, data);
+}
+
 export default {
     getCategory,
     addCategory,
     deleteCategoryId,
     addVendor,
     deleteVendorById,
-    getVendor
+    getVendor,
+    getProduct,
+    getStockDetailsByProductId
 }

@@ -15,6 +15,14 @@
   font: var(--ft-sm);
 }
 
+#basic-nav-dropdown{
+  color:var(--color-white) !important; 
+}
+
+.bg-blue{
+  background-color:var(--color-primary) ;
+}
+
 .ag-theme-alpine .ag-header-cell, .ag-theme-alpine .ag-header-group-cell{
   background-color: var(--color-primary) !important;
   color: var(--color-white);
@@ -47,7 +55,7 @@ color: var(--color-secondary);
 }
 
 .aggrid{
-  height: 50vh
+  height: 10vh
 }
 
 .error{
@@ -61,16 +69,3 @@ color: var(--color-secondary);
 .css-1uccc91-singleValue {
   font-size: var(--ft-sm) !important;
 }
-/* *{
-  box-sizing: border-box;
-  margin:0;
-  padding:0;
-font-family: 'PT Sans', sans-serif;
-}
-.home,.services,.product,.contact-us,.marketing,.consulting{
-  display: flex;
-  height:90vh;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-} */

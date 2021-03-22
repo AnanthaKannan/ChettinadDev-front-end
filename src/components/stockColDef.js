@@ -1,5 +1,9 @@
 export const stockColDef = [
     {
+        headerName: "Date",
+        field: "date"
+    },
+    {
         headerName: "Open stock",
         field: "openStock"
     },

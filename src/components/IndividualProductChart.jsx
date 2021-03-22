@@ -1,42 +1,96 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Bar, Line } from 'react-chartjs-2';
+import generalService from '../service/general.service';
+import dateFn from 'date-fn';
 
-export default function IndividualProductChart() {
+export default function IndividualProductChart({productId}) {
 
-  const genLineData = (moreData = {}, moreData2 = {}) => {
+  const [chartData, setChartData] = useState();
+
+  useEffect(() =>{
+    console.log('productId', productId)
+    if(productId){
+     getStockDetailsByProductId();
+    }
+},[productId])
+
+  const getStockDetailsByProductId = async() => {
+    const result = await generalService.getStockDetailsByProductId({_id: productId});
+    if(result.status == 200){
+        const data = result.data.data;
+        console.log('getStockDetailsByProductId', data);
+        // setRowData([...data]);
+        let [currentStock, usedStock, openStock, date] = [[], [], [], []];
+
+        data.forEach((obj) =>{
+          currentStock.push(obj.currentStock);
+          usedStock.push(obj.usedStock);
+          openStock.push(obj.openStock);
+          date.push( dateFn.date(new Date(obj.date), 143));
+        });
+        const chartData_ = genLineData(currentStock, usedStock, openStock, date);
+        setChartData(chartData_);
+    }
+}
+
+
+  const genLineData = (currentStock, usedStock, openStock, date) => {
     return {
       labels: 'MONTH',
       datasets: [
         {
-          label: "Product",
-          backgroundColor: "#7DCEA0",
-          borderColor: "green",
-          borderWidth: 1,
-          data: [100, 200, null, 500, 10, 100, 200, null, 500, 10],
-        },
-        {
-          label: "Product B",
+          label: "Current Stock",
           borderColor: "red",
-          backgroundColor: null,
           borderWidth: 1,
-          data: [105, 210, 30, 420, 501, 105, 210, 30, 420, 501],
+          data: currentStock,
           type: 'line'
           },
           {
-            label: "Product C",
+            label: "Used Stock",
             borderColor: "blue",
             borderWidth: 1,
-            data: [110, 20, 310, 40, 51, 101, 210, 30, 420, 501],
-            type: 'line'
+            data: usedStock,
+            type: 'bar'
+            },
+            {
+              label: "Open Stock",
+              backgroundColor: "#7DCEA0",
+              borderColor: "green",
+              borderWidth: 1,
+              data: openStock,
             }
       ],
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'JUly', 'Aug', 'Sep', 'Oct']
+      labels: date,
+      position: 'bottom',
+      options: {
+        position: 'bottom',
+        legend: {
+            display: false,
+            position: 'bottom'
+        }
+    }
     };
   };
   return (
     <div>
       <Bar
-        data={genLineData({ type: "line", fill: false })}
+      height={75}
+        data={chartData}
+        options={{
+          "hover": {
+            "mode": "index",
+            axis: 'y'
+          },
+          "tooltips": {
+            "enabled": true
+                   
+          },
+          legend: {
+              display: true,
+              position: 'top',
+              align: 'start'
+          }
+      }}
       />
     </div>
   )

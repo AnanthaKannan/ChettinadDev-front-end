@@ -9,8 +9,7 @@ export default function IndividualProductChart() {
       datasets: [
         {
           label: "Product",
-          // barPercentage: 0.2,
-          // backgroundColor: "#BABABA",
+          backgroundColor: "#7DCEA0",
           borderColor: "green",
           borderWidth: 1,
           data: [100, 200, null, 500, 10, 100, 200, null, 500, 10],
@@ -18,6 +17,7 @@ export default function IndividualProductChart() {
         {
           label: "Product B",
           borderColor: "red",
+          backgroundColor: null,
           borderWidth: 1,
           data: [105, 210, 30, 420, 501, 105, 210, 30, 420, 501],
           type: 'line'

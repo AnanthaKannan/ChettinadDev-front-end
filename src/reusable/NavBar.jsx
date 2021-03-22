@@ -15,8 +15,8 @@ export default function NavBar() {
          class="pull-left"  href="#">
          <img src={ require('../assets/foodbooking.jpg') }class="image-responsive"/>
          </Nav.Link>
-        <Nav.Link href="../components/AddProduct" id="nav-link" >Home</Nav.Link>
-        <Nav.Link href="../components/AddProduct" id="nav-link">Products</Nav.Link>
+        <Nav.Link href="../components/Home" id="nav-link" >Home</Nav.Link>
+        <Nav.Link href="../components/Product" id="nav-link">Products</Nav.Link>
         <Nav.Link href="../components/AddProduct"id="nav-link">Vendor</Nav.Link>
         <NavDropdown title="Products" id="nav-dropdown">
         <NavDropdown.Item href="../components/AddProduct">Action</NavDropdown.Item>

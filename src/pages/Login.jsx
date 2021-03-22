@@ -10,6 +10,7 @@ import Service from '../reusable/Service.jsx'
 import SignUp from '../reusable/SignUp.jsx'
 import Home from '../reusable/Home.jsx'
 // import Product from '../resuable/Product'
+// import NavbarNew from '../reusable/NavbarNew'
 
 export default function Login() {
     return (
@@ -19,6 +20,7 @@ export default function Login() {
         {/* <NavBar/> */}
         
         <Navbar/>
+        {/* <NavbarNew/> */}
         <Switch>
             <Route path='/' exact component={Home}/>
             <Route path='/services' exact component={Service}/>

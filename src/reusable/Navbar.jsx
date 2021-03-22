@@ -3,34 +3,33 @@ import{Button} from './Button.jsx';
 import{Link} from 'react-router-dom';
 import ReactBootstrap, {NavDropdown} from 'react-bootstrap';
 import './Navbar.css';
-import DropDown from './DropDown.jsx';
 
 export default function Navbar() {
 
     const[click,setClick]=useState(false);
 
-    const[dropdown,setDropdown]=useState(false);
+    // const[dropdown,setDropdown]=useState(false);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu=()=>setClick(false);
 
-    const onMouseEnter=()=>{
-        if(window.innerWidth < 960){
-            setDropdown(false);
-        }
-        else{
-            setDropdown(true);
-        }
-    };
+    // const onMouseEnter=()=>{
+    //     if(window.innerWidth < 960){
+    //         setDropdown(false);
+    //     }
+    //     else{
+    //         setDropdown(true);
+    //     }
+    // };
 
-    const onMouseLeave=()=>{
-        if(window.innerWidth < 960){
-            setDropdown(false)
-        }
-        // else{
-        //     setDropdown(false)
-        // }
-    };
+    // const onMouseLeave=()=>{
+    //     if(window.innerWidth < 960){
+    //         setDropdown(false)
+    //     }
+    //     else{
+    //          setDropdown(false)
+    //      }
+    // };
     return (
         <>
             <nav className='navbar'>
@@ -55,8 +54,8 @@ export default function Navbar() {
 {dropdown && <DropDown/>}
  </li> */}
   <NavDropdown title="Products" id="nav-dropdown">
-        <NavDropdown.Item href="../components/AddProduct">Action</NavDropdown.Item>
-        <NavDropdown.Item href="../components/AddProduct">Another action</NavDropdown.Item>
+        <NavDropdown.Item href="./Product">Action</NavDropdown.Item>
+        <NavDropdown.Item href="./Product">Another action</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
         {/* <NavDropdown.Divider /> */}
         <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>

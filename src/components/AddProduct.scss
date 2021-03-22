@@ -86,4 +86,7 @@ $border-radius: 4px;
     cursor: not-allowed;
     background: rgba($primary-color, 0.8);
   }
+  .navbar-dark .navbar-nav .nav-link {
+    color: #f8f8f8;
+  }
 }

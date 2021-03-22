@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import * as Yup from "yup";
 import "./AddProduct.scss"
 import { Select, TextField } from "@material-ui/core";
-import NavBar from '../reusable/NavBar'
+// import NavBar from '../reusable/NavBar'
 
 
 const vendortype = [

@@ -13,18 +13,24 @@ export default function IndividualProductChart() {
           // backgroundColor: "#BABABA",
           borderColor: "green",
           borderWidth: 1,
-          data: [100, 200, null, 500, 10],
+          data: [100, 200, null, 500, 10, 100, 200, null, 500, 10],
         },
         {
           label: "Product B",
-          // backgroundColor: "#00b34f",
           borderColor: "red",
           borderWidth: 1,
-          data: [105, 210, 30, 420, 501],
+          data: [105, 210, 30, 420, 501, 105, 210, 30, 420, 501],
           type: 'line'
-          }
+          },
+          {
+            label: "Product C",
+            borderColor: "blue",
+            borderWidth: 1,
+            data: [110, 20, 310, 40, 51, 101, 210, 30, 420, 501],
+            type: 'line'
+            }
       ],
-      labels: ['January', 'February', 'March', 'April', 'May']
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'JUly', 'Aug', 'Sep', 'Oct']
     };
   };
   return (

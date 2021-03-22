@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./AddProduct.scss";
+// import "./AddProduct.scss";
 import { Formik,ErrorMessage} from "formik";
 import MenuItem from "@material-ui/core/MenuItem";
 import * as Yup from "yup";
-import "./AddProduct.scss"
+// import "./AddProduct.scss"
 import { Select, TextField } from "@material-ui/core";
-// import Navbar from '../reusable/Navbar'
-
 
 const vendortype = [
     {

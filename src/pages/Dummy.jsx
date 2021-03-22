@@ -3,8 +3,7 @@ import TestComp from '../components/TestComp'
 import AgGirdReact from '../reusable/AgGirdReact'
 import H1 from '../reusable/H1'
 import H2 from '../reusable/H2'
-import NavBar from '../reusable/NavBar'
-
+// import Navbar from '../reusable/Navbar'
 
 export default function Dummy() {
     return (
@@ -12,7 +11,7 @@ export default function Dummy() {
             <TestComp />
             <H1 text='some data here' />
             <H2 text='h2 data is here' />
-            {/* <NavBar/> */}
+            {/* <Navbar/> */}
         </div>
     )
 }

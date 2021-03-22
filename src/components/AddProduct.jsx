@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import * as Yup from "yup";
 import "./AddProduct.scss"
 import { Select, TextField } from "@material-ui/core";
-// import NavBar from '../reusable/NavBar'
+// import Navbar from '../reusable/Navbar'
 
 
 const vendortype = [
@@ -109,7 +109,7 @@ export default function AddProduct() {
            {({ handleSubmit, handleChange, values, errors,setFieldValue}) => (
 
             <form onSubmit={handleSubmit}>
-                           {/* <NavBar/> */}
+                           {/* <Navbar/> */}
 
              <div className="container" >
               <div className="form-row"> 

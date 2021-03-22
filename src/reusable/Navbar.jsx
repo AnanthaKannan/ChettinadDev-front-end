@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import{Button} from './Button.jsx';
+import{Button} from './Button';
 import{Link} from 'react-router-dom';
 import ReactBootstrap, {NavDropdown} from 'react-bootstrap';
 import './Navbar.css';

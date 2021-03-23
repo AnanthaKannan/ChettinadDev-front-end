@@ -6,12 +6,12 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 
-export default function AgGirdReact ({columnDefs, rowData, pagination=true}) {
+export default function AgGirdReact ({columnDefs, rowData, pagination=true, height='50vh'}) {
   
   return (
-    <div className="ag-theme-alpine aggrid  mb-0">
+    <div className="ag-theme-alpine  mb-0" style={{height: height}}>
     <AgGridReact
-        domLayout='autoHeight'
+        // domLayout='autoHeight'
         animateRows={true}
         columnDefs={columnDefs}
         rowData={rowData}

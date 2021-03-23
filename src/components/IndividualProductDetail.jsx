@@ -10,15 +10,41 @@ export default function IndividualProductDetail({setProductId}) {
     const [addStock, setAddStock] = useState(null);
     const [usedStock, setUsedStock] = useState(null);
     const [selectedOption, setSelectedOption] = useState({});
-    const [pendingStock, setPendingStock] = useState(null)
+    const [currentStock, setCurrentStock] = useState(null);
+    const [currentStockBackup, setCurrentStockBackup] = useState(null);
     const [reservedStock, setReservedStock] = useState(null);
-    const [currentStock, setCurrentStock] = useState(null)
     const [vendor, setVendor] = useState(null)
     const [options, setOptions] = useState([]);
+    const [backUp, setBackUp] = useState([]);
+    const [usedStockErrorMsg, setUsedStockErrorMsg] = useState('');
+    const [isBtnDisable, setIsBtnDisable] = useState(true);
 
     useEffect(() =>{
         getProduct();
     },[])
+
+    useEffect(() =>{
+      if( (usedStock || addStock ) && selectedOption.value){
+        setIsBtnDisable(false);
+      }
+      else{
+        setIsBtnDisable(true)
+      }
+      currentStockCalculation();
+  },[usedStock, addStock, selectedOption.value])
+
+
+  const currentStockCalculation = () =>{
+    // console.log('addStock', addStock, 'usedStock', usedStock);
+      setCurrentStock(currentStockBackup);
+    if(usedStock > 0){
+      setCurrentStock(currentStockBackup - usedStock);
+    }
+    if(addStock > 0){
+      setCurrentStock(Number(currentStockBackup) + Number(addStock));
+    }
+    
+  }
 
     const onHandleSubmit = () =>{
         console.log('addStock', addStock);
@@ -27,17 +53,25 @@ export default function IndividualProductDetail({setProductId}) {
             toast.error('Please insert value in used stock or Add stock')
         }
         const data ={
-            openStock: addStock,
-            usedStock: usedStock,
-            currentStock: currentStock
+            openStock: addStock ? addStock: null,
+            usedStock: usedStock ? usedStock : null,
+            currentStock: currentStock,
+            _productId: selectedOption.value
         }
         console.log('sendData', data);
+        addStock_(data);
     }
 
-    const addStock_ = (data) => {
-        const result = generalService.addStock(data);
+    const addStock_ = async(data) => {
+        const result = await generalService.addStock(data);
         if(result.status == 200){
             toast.success('Successfully Added');
+            // to refresh the graph and gird
+            setProductId('');
+            setProductId(selectedOption.value)
+            setCurrentStockBackup(currentStock);
+            setUsedStock('');
+            setAddStock('');
         }
         else{
             toast.error('Failed to add');
@@ -49,47 +83,63 @@ export default function IndividualProductDetail({setProductId}) {
         if(result.status == 200){
             const data = result.data.data;
             console.log('data', data);
+            setBackUp([...data]);
             const updatedData = data.map((obj) => ({value: obj._id, label: obj.name}))
             setOptions([...updatedData]);
         }
     }
 
     const onHandelProductChange = (product) =>{
+      const _id = product.value;
         console.log('product', product);
         setSelectedOption(product);
-        console.log('productId', product.value)
-        setProductId(product.value);
+        setProductId(_id);
+        const details = backUp.find(obj => obj._id = _id);
+        if(details.currentStock){
+          setCurrentStock(details.currentStock);
+          setCurrentStockBackup(details.currentStock);
+          setVendor(details.vendor)
+        }
+        if(details.reserved){
+          setReservedStock(details.reserved)
+        }
+        console.log('details', details)
+    }
+
+    const onHandelUsedStock = (value) => {
+      setUsedStock(value);
+      if(currentStock < value)
+      setUsedStockErrorMsg('Used stock should not be more than current stock')
+    else
+      setUsedStockErrorMsg('');
+    
     }
     
     return (
       <div>
-
-           <span className='txt-sm'>Product</span>
+<div className='row'>
+        <div className="col-md-6">
+        <span className='txt-sm'>Product</span>
           <Select
           placeholder=''
         value={selectedOption}
         onChange={onHandelProductChange}
         options={options}
       />
-      <div className='row'>
-        <div className="col-md-6">
-        <span className='txt-sm'>Pending Stock</span>
-          <TextBox className='mb-2' value={pendingStock} readOnly={true}/>
-        </div>
-        <div className="col-md-6">
-        <span className='txt-sm'>Reserved Stock</span>
-          <TextBox className='mb-2' value={reservedStock} readOnly={true}/> 
-            </div>
-      </div>
-
-      <div className='row'>
-        <div className="col-md-6">
-        <span className='txt-sm'>Current Stock</span>
-          <TextBox className='mb-2' value={currentStock} readOnly={true}/> 
         </div>
         <div className="col-md-6">
         <span className='txt-sm'>Vendor</span>
-          <TextBox type='number' className='mb-2' readOnly={true} value={vendor} />
+        <TextBox className='mb-2' value={vendor} readOnly={true}/> 
+        </div>
+      </div>
+      <div className='row'>
+        <div className="col-md-6">
+        <span className='txt-sm'>Reserved Stock</span>
+          <TextBox className='mb-2' value={reservedStock} readOnly={true}/> 
+        </div>
+        <div className="col-md-6">
+        <span className='txt-sm'>Current Stock</span>
+          <TextBox type='number' className='mb-2' value={currentStock} readOnly={true} />
         </div>
       </div>
          
@@ -97,7 +147,8 @@ export default function IndividualProductDetail({setProductId}) {
       <div className='row'>
         <div className="col-md-6">
         <span className='txt-sm'>Used Stock</span>
-          <TextBox type='number' className='mb-2' readOnly={addStock} value={usedStock} onChange={(value) => setUsedStock(value)}/>
+          <TextBox type='number' className={usedStockErrorMsg ? 'error mb-2' : 'mb-2'} readOnly={addStock} value={usedStock} onChange={onHandelUsedStock}/>
+           <span className='error-txt'>{usedStockErrorMsg}</span>
         </div>
         <div className="col-md-6">
         <span className='txt-sm'>Add stock</span>
@@ -105,11 +156,8 @@ export default function IndividualProductDetail({setProductId}) {
         </div>
       </div>
          
-         
-        
-        
           <div className='text-right'>
-          <RsButton text='Submit' onClick={() => onHandleSubmit()}/>
+          <RsButton text='Submit' onClick={() => onHandleSubmit()} disabled={isBtnDisable} />
              </div>
       </div>
     )

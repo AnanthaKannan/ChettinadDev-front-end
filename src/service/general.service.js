@@ -33,6 +33,10 @@ export const getStockDetailsByProductId = (data) => {
     return http.get(`${api}/getStockDetailsByProductId`, data);
 }
 
+export const addStock = (data) => {
+    return http.post(`${api}/addStock`, data);
+}
+
 export default {
     getCategory,
     addCategory,
@@ -41,5 +45,6 @@ export default {
     deleteVendorById,
     getVendor,
     getProduct,
-    getStockDetailsByProductId
+    getStockDetailsByProductId,
+    addStock
 }

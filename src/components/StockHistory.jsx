@@ -18,7 +18,8 @@ export default function StockHistory({productId}) {
         if(result.status == 200){
             const data = result.data.data;
             console.log('getStockDetailsByProductId', data);
-            setRowData([...data]);
+            const sortData = data.reverse();
+            setRowData([...sortData]);
         }
     }
 
@@ -26,7 +27,7 @@ export default function StockHistory({productId}) {
         <div>
              {/* <p className='txt-lg mb-2'>Stock History</p> */}
              <span className='txt-sm'>Stock History</span>
-             <AgGirdReact columnDefs={stockColDef} rowData={rowData} pagination={false}/>
+             <AgGirdReact columnDefs={stockColDef} rowData={rowData} pagination={false} height='40vh'/>
         </div>
     )
 }

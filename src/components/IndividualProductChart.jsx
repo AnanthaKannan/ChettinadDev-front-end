@@ -7,6 +7,7 @@ export default function IndividualProductChart({productId}) {
 
   const [chartData, setChartData] = useState();
 
+
   useEffect(() =>{
     console.log('productId', productId)
     if(productId){
@@ -19,14 +20,14 @@ export default function IndividualProductChart({productId}) {
     if(result.status == 200){
         const data = result.data.data;
         console.log('getStockDetailsByProductId', data);
-        // setRowData([...data]);
         let [currentStock, usedStock, openStock, date] = [[], [], [], []];
 
         data.forEach((obj) =>{
           currentStock.push(obj.currentStock);
           usedStock.push(obj.usedStock);
           openStock.push(obj.openStock);
-          date.push( dateFn.date(new Date(obj.date), 143));
+          // date.push( dateFn.date(new Date(obj.date), 143));
+          date.push(obj.date);
         });
         const chartData_ = genLineData(currentStock, usedStock, openStock, date);
         setChartData(chartData_);
@@ -77,6 +78,14 @@ export default function IndividualProductChart({productId}) {
       height={75}
         data={chartData}
         options={{
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                min: 0
+              }    
+            }]
+          },
           "hover": {
             "mode": "index",
             axis: 'y'

@@ -1,7 +1,8 @@
 export const stockColDef = [
     {
         headerName: "Date",
-        field: "date"
+        field: "date",
+        width: '310px'
     },
     {
         headerName: "Open stock",

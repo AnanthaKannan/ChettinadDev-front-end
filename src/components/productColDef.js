@@ -1,11 +1,5 @@
 export const productColDef = [
     
-    // {
-    //     headerName: "Last inspection date",
-    //     field: "status",
-    //     sortable: true,
-    //     filter: true,
-    // },
     {
         headerName: "Name",
         field: "name",
@@ -32,7 +26,7 @@ export const productColDef = [
     },
 
     {
-        headerName: "start Date",
+        headerName: "Category",
         field: "category",
         sortable: true,
         filter: true
@@ -45,20 +39,20 @@ export const productColDef = [
     },
     {
         headerName: "Reserved",
-        field: "resrved",
+        field: "reserved",
         sortable: true,
         filter: true
     },
+    // {
+    //     headerName: "Quantity to order",
+    //     field: "quantityToOrder",
+    //     sortable: true,
+    //     filter: true,
+    // },
     {
-        headerName: "Quantity to order",
-        field: "quantityToOrder",
-        sortable: true,
-        filter: true
-    },{
         headerName: 'Add to cart',
         field: 'cart',
-        // minWidth: 180,
-        checkboxSelection: true,
+        checkboxSelection: true
     }
     
 ]

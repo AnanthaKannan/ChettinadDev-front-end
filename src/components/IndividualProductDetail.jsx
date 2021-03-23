@@ -52,6 +52,9 @@ export default function IndividualProductDetail({setProductId}) {
         if(!usedStock && !addStock){
             toast.error('Please insert value in used stock or Add stock')
         }
+        if(usedStockErrorMsg){
+          return
+        }
         const data ={
             openStock: addStock ? addStock: null,
             usedStock: usedStock ? usedStock : null,
@@ -78,6 +81,7 @@ export default function IndividualProductDetail({setProductId}) {
         }
     }
 
+
     const getProduct = async() => {
         const result = await generalService.getProduct();
         if(result.status == 200){
@@ -94,12 +98,12 @@ export default function IndividualProductDetail({setProductId}) {
         console.log('product', product);
         setSelectedOption(product);
         setProductId(_id);
-        const details = backUp.find(obj => obj._id = _id);
-        if(details.currentStock){
-          setCurrentStock(details.currentStock);
-          setCurrentStockBackup(details.currentStock);
-          setVendor(details.vendor)
-        }
+        const details = backUp.find(obj => obj._id === _id);
+        setVendor(details.vendor)
+        const currentStock_ = details.currentStock ? details.currentStock : 0 ;
+          setCurrentStock(currentStock_);
+          setCurrentStockBackup(currentStock_);
+
         if(details.reserved){
           setReservedStock(details.reserved)
         }
@@ -108,7 +112,9 @@ export default function IndividualProductDetail({setProductId}) {
 
     const onHandelUsedStock = (value) => {
       setUsedStock(value);
-      if(currentStock < value)
+      if(!value)
+        setUsedStockErrorMsg('');
+      else if(currentStock < value)
       setUsedStockErrorMsg('Used stock should not be more than current stock')
     else
       setUsedStockErrorMsg('');

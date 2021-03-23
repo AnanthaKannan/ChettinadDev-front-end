@@ -9,6 +9,10 @@ export const addCategory = (data) => {
     return http.post(`${api}/addCategory`, data);
 }
 
+export const addProduct = (data) => {
+    return http.post(`${api}/addProduct`, data);
+}
+
 export const deleteCategoryId = (data) => {
     return http.delete(`${api}/deleteCategoryId`, data);
 }
@@ -46,5 +50,6 @@ export default {
     getVendor,
     getProduct,
     getStockDetailsByProductId,
-    addStock
+    addStock,
+    addProduct
 }

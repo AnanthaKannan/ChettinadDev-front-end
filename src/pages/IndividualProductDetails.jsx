@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import IndividualProductChart from '../components/IndividualProductChart';
 import IndividualProductDetail from '../components/IndividualProductDetail'
 import StockHistory from '../components/StockHistory'
-import MyNavbar from '../reusable/Navbar';
+import MyNavbar from '../reusable/MyNavbar';
 
 
 export default function IndividualProductDetails() {

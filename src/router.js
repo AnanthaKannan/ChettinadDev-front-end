@@ -9,7 +9,7 @@ import ProductDetails from './pages/ProductDetails'
 export const routes = [
     {
         COMPONENT: <Dummy />,
-        PATH: '/dummy'
+        PATH: '/dummy-page'
     },
     {
         COMPONENT: <AddAgentCategory />,
@@ -30,7 +30,7 @@ export const routes = [
         PATH: '/individual-product-details'
     },
     {
-        COMPONENT: <Dummy />,
+        COMPONENT: <ProductDetails />,
         PATH: '/'
     }
 

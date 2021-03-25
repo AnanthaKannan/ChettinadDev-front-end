@@ -4,46 +4,15 @@ import * as Yup from "yup";
 import Button from '@material-ui/core/Button';
 import generalService from '../service/general.service'
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
-// const vendorType = [
-//   {
-//     value: "reliance",
-//     label: "Reliance",
-//   },
-//   {
-//     value: "nilgris",
-//     label: "Nilgris",
-//   },
-
-// ];
-// const category = [
-//   {
-//     value: "reliance",
-//     label: "Reliance",
-//   },
-//   {
-//     value: "nilgris",
-//     label: "Nilgris",
-//   },
-
-// ];
-const subcategory = [
-  {
-    value: "reliance",
-    label: "Reliance",
-  },
-  {
-    value: "nilgris",
-    label: "Nilgris",
-  },
-
-];
 
 export default function AddProducts() {
 
   const [imageRead, setImageRead] = useState("");
   const [vendorType, setVendorType] = useState([]);
   const [category, setCategory] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     getCategory();
@@ -103,10 +72,21 @@ export default function AddProducts() {
     addProduct(sendValue);
   }
 
+  const onRefreshPage = () => {
+    let redirect = 'add-product';
+    history.push({
+      pathname: '/dummy-page',
+      redirect,
+    });
+  }
+
+
+
   const addProduct = async(data) => {
     const result = await generalService.addProduct(data);
     if(result.status == 200){
       toast.success(`${data.name} product successfully added`);
+      onRefreshPage();
     }
     else{
       toast.error('Failed to add the product')

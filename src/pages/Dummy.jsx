@@ -1,20 +1,18 @@
-import React from 'react'
-import TestComp from '../components/TestComp'
-import AgGirdReact from '../reusable/AgGirdReact'
-import H1 from '../reusable/H1'
-import H2 from '../reusable/H2'
-import MiniDrawer from '../reusable/MiniDrawer';
-import Typography from '@material-ui/core/Typography';
-import IndividualProductChart from '../components/IndividualProductChart'
+import React, {useEffect} from 'react'
+import { useHistory, useLocation } from "react-router-dom";
 
 export default function Dummy() {
+    const location = useLocation();
+    const history = useHistory();
+
+    useEffect(() =>{
+        console.log('myLocation', location);
+        const redirect = location.redirect;
+        history.push(redirect);
+    },[]);
+
     return (
-        <div className='container'>
-           {/* <MiniDrawer> */}
-<IndividualProductChart />
-           {/* <Typography variant="h6" className='mb-2'> Product List</Typography>
-            <AgGirdReact /> */}
-            {/* </MiniDrawer> */}
+        <div>
         </div>
     )
 }

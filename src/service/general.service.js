@@ -41,6 +41,10 @@ export const addStock = (data) => {
     return http.post(`${api}/addStock`, data);
 }
 
+export const addCart = (data) => {
+    return http.post(`${api}/addCart`, data);
+}
+
 export default {
     getCategory,
     addCategory,
@@ -51,5 +55,6 @@ export default {
     getProduct,
     getStockDetailsByProductId,
     addStock,
-    addProduct
+    addProduct,
+    addCart
 }

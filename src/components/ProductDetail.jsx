@@ -3,6 +3,7 @@ import AgGirdReact from '../reusable/AgGirdReact'
 import {productColDef} from './productColDef'
 import generalService from '../service/general.service'
 import RsButton from '../reusable/RsButton';
+import { toast } from 'react-toastify';
 
 export default function ProductDetail() {
 
@@ -18,8 +19,24 @@ export default function ProductDetail() {
         if(result.status == 200){
             const data = result.data.data;
             console.log('data', data);
-            setRowData([...data]);
+            const updatedData = dataConversion(data);
+            setRowData([...updatedData]);
         }
+    }
+
+    const dataConversion = (data) => {
+        const updatedData = data.map((obj) => {
+            obj.alert = false;
+            if(!obj.currentStock){
+                obj.currentStock = 0;
+            }
+            if(obj.reserved >= obj.currentStock){
+                obj.alert = true;
+            }
+            return obj;
+        });
+        console.log('updatedData', updatedData)
+        return updatedData;
     }
 
     const onHandleImportExcel = () => {
@@ -30,7 +47,7 @@ export default function ProductDetail() {
 
     }
 
-    const addToCart = () => {
+    const addToCart = async() => {
        const sendData = selectedRow.map((obj) =>{
            return {
                _productId: obj._id,
@@ -38,6 +55,14 @@ export default function ProductDetail() {
            }
        });
        console.log('sendData', sendData);
+       const result = await generalService.addCart({data: sendData});
+       if(result.status == 200){
+           toast.success('Successfully added')
+       }
+       else{
+           toast.error('Failed to add');
+       }
+
     }
 
     const onSelectionChanged= (row) => {

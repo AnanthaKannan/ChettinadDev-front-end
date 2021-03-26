@@ -6,14 +6,23 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 
-export default function AgGirdReact ({columnDefs, rowData, pagination=true, onSelectionChanged, height='50vh'}) {
+export default function AgGirdReact ({columnDefs, onCellClicked, frameworkComponents={}, rowData, pagination=true, onSelectionChanged, height='50vh'}) {
   
+  const onCellClicked_ = (e) =>{
+    try{
+      onCellClicked(e)
+    }
+    catch(e){
+
+    }
+  }
 
 
   return (
     <div className="ag-theme-alpine  mb-0" style={{height: height}}>
     <AgGridReact
         // domLayout='autoHeight'
+        onCellClicked={(e) => onCellClicked_(e)}
         rowSelection='multiple'
         animateRows={true}
         columnDefs={columnDefs}
@@ -21,7 +30,8 @@ export default function AgGirdReact ({columnDefs, rowData, pagination=true, onSe
         onFirstDataRendered={(params) => params.api.sizeColumnsToFit()}
         pagination={pagination}
         paginationPageSize={10}
-        onSelectionChanged={onSelectionChanged}
+        // onSelectionChanged={onSelectionChanged}
+        frameworkComponents={frameworkComponents}
     >
     </AgGridReact>
     </div>

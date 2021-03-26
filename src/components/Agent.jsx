@@ -10,6 +10,8 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 
 export default function Agent() {
     const [category, setCategory] = useState([]);
+    const [url, setUrl] = useState('');
+    const [email, setEmail] = useState('');
     const [categoryName, setCategoryName] = useState('');
     useEffect(() =>{
         getVendor();
@@ -25,11 +27,22 @@ export default function Agent() {
     }
 
     const addVendor = async() => {
-        const result = await generalService.addVendor({name: categoryName});
+        if(!categoryName){
+            toast.error('Please enter agent name');
+            return;
+        }
+        const sendData ={
+            name: categoryName,
+            url,
+            email
+        }
+        const result = await generalService.addVendor(sendData);
         if(result.status === 200){
             toast.success('successfully added');
             getVendor();
             setCategoryName('');
+            setUrl('');
+            setEmail('');
         }
     }
 
@@ -57,15 +70,24 @@ export default function Agent() {
              <div>
                  <div>
 
-                <div className='d-flex'>
+                
                  <TextBox value={categoryName} className='mb-1 d-inline' onChange={onHandleCategoryChange} />
+                 <span className='txt-sm'>URL</span>
+                 <TextBox value={url} type='url' className='mb-1 d-inline' onChange={(value) => setUrl(value)} />
+                 <span className='txt-sm'>Email</span>
+                 <TextBox value={email} className='mb-1 d-inline' onChange={(value) => setEmail(value)} />
+                 <div className='text-right mb-2'>
                  <RsButton text='Add' className='ml-2 mb-1 d-inline' onClick={() => addVendor()} />
                  </div>
                  </div>
                  {
                      category.map((obj) =>{
-                         return <div  key={obj._id} className="d-flex bg-primary text-white py-1 px-2 mb-1 txt-sm rounded justify-content-between">
+                         return <div  key={obj._id} className="d-flex bg-primary text-white py-1 px-2 mb-1 txt-sm rounded justify-content-between align-items-center">
+                             <div>
                              <p className='mb-0' >{obj.name}</p>
+                             <p className='mb-0'>{obj.url}</p>
+                             <p className='mb-0'>{obj.email}</p>
+                             </div>
                              <p className='mb-0 point'><IoIosCloseCircleOutline onClick={() => onHandleClose(obj._id)} /></p>
                          </div>
                      })

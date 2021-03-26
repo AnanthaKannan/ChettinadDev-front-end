@@ -1,10 +1,11 @@
 import React, { createContext, useReducer } from 'react'
 import AddAgentCategory from './pages/AddAgentCategory'
 import AddProduct from './pages/AddProduct'
+import Carts from './pages/Carts'
 import Dummy from './pages/Dummy'
 import IndividualProductDetails from './pages/IndividualProductDetails'
 import ProductDetails from './pages/ProductDetails'
-// import Login from './pages/Login'
+
 
 export const routes = [
     {
@@ -12,9 +13,12 @@ export const routes = [
         PATH: '/dummy-page'
     },
     {
+        COMPONENT: <Carts />,
+        PATH: '/cart'
+    },
+    {
         COMPONENT: <AddAgentCategory />,
         PATH: '/add-agent-category'
-        
     },
     {
         COMPONENT: <AddProduct />,

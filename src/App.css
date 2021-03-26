@@ -9,7 +9,7 @@
     --ft-lg: 16px;
   }
 
-.require::after{
+.required:after{
   content: '*';
   color: var(--color-danger);
   font: var(--ft-sm);

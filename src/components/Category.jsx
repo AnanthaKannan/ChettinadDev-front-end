@@ -14,6 +14,7 @@ export default function Category() {
 
     const [category, setCategory] = useState([]);
     const [categoryName, setCategoryName] = useState('');
+
     useEffect(() =>{
         getCategory();
     },[])
@@ -28,6 +29,10 @@ export default function Category() {
     }
 
     const addCategory = async() => {
+        if(!categoryName){
+            toast.error('Please enter category name');
+            return;
+        }
         const result = await generalService.addCategory({name: categoryName});
         if(result.status === 200){
             toast.success('successfully added');
@@ -58,12 +63,9 @@ export default function Category() {
         <div>
              <p className='txt-lg mb-2'>Category</p>
              <div>
-                 <div>
-
-                <div className='d-flex'>
-                 <TextBox value={categoryName} className='mb-1 d-inline' onChange={onHandleCategoryChange} />
+                 <div className='d-flex'>
+                 <TextBox value={categoryName} className='mb-1 d-inline required' onChange={onHandleCategoryChange} />
                  <RsButton text='Add' className='ml-2 mb-1 d-inline' onClick={() => addCategory()} />
-                 </div>
                  </div>
                  {
                      category.map((obj) =>{

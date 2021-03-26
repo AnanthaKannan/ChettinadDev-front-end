@@ -23,7 +23,7 @@ export const productColDef = [
     },
     {
         headerName: "Vendor",
-        field: "vendor",
+        field: "vendorName",
         cellRenderer: (params) => `<div class=${params.data.alert === true ? "text-danger" : "" }>${params.value}</div>`,
         sortable: true,
         filter: true
@@ -31,7 +31,7 @@ export const productColDef = [
 
     {
         headerName: "Category",
-        field: "category",
+        field: "categoryName",
         cellRenderer: (params) => `<div class=${params.data.alert === true ? "text-danger" : "" }>${params.value}</div>`,
         sortable: true,
         filter: true
@@ -51,9 +51,14 @@ export const productColDef = [
         filter: true
     },
     {
+        headerName: 'Quantity to order',
+        field: "quantityToOrder",
+        editable: true,
+    },
+    {
         headerName: 'Add to cart',
         field: 'cart',
-        checkboxSelection: true
+        cellRenderer: 'CheckBoxCellRenderer'
     }
     
 ]

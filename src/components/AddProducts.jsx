@@ -63,8 +63,8 @@ export default function AddProducts() {
     const sendValue = {
         "name": values.name,
         "status": true,
-        "category": values.category,
-        "vendor": values.vendorType,
+        "_categoryId": values.category,
+        "_vendorId": values.vendorType,
         "description": values.productInfo,
         "sku": values.sku,
         "reserved": values.reserved
@@ -168,7 +168,7 @@ export default function AddProducts() {
                 >
                   <option value="" hidden></option>
                   {vendorType.map((option) => (
-                    <option key={option._id} value={option.name}>
+                    <option key={option._id} value={option._id}>
                       {option.name}
                     </option >
                   ))}
@@ -189,7 +189,7 @@ export default function AddProducts() {
                 >
                   <option value="" hidden></option>
                   {category.map((option) => (
-                    <option key={option._id} value={option.name}>
+                    <option key={option._id} value={option._id}>
                       {option.name}
                     </option >
                   ))}

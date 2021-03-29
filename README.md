@@ -2,7 +2,7 @@
 
     npm start
 
-### INSTALL NODE MODULE
+### INSTALL NODE MODULE 
 
     npm i
 
@@ -10,5 +10,5 @@
 
     npm run build --prod
 
-### 
-git pull origin 
+### pull code
+git pull origin Temp

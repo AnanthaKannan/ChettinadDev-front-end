@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function LoginBox() {
+export default function TestComp() {
     return (
         <div>
-            login box here
+            <p>Test comp</p>
         </div>
     )
 }

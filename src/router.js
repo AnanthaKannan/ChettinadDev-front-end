@@ -1,23 +1,41 @@
 import React, { createContext, useReducer } from 'react'
-import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
-import TiltStation from './pages/TiltStation';
+import AddAgentCategory from './pages/AddAgentCategory'
+import AddProduct from './pages/AddProduct'
+import Carts from './pages/Carts'
+import Dummy from './pages/Dummy'
+import IndividualProductDetails from './pages/IndividualProductDetails'
+import ProductDetails from './pages/ProductDetails'
+
 
 export const routes = [
     {
-        COMPONENT: <TiltStation />,
-        PATH: '/tilt-station'
+        COMPONENT: <Dummy />,
+        PATH: '/dummy-page'
     },
     {
-        COMPONENT: <Dashboard />,
-        PATH: '/dashboard'
+        COMPONENT: <Carts />,
+        PATH: '/cart'
     },
     {
-        COMPONENT: <Login />,
-        PATH: '/login'
-    }, {
-        COMPONENT: <Login />,
+        COMPONENT: <AddAgentCategory />,
+        PATH: '/add-agent-category'
+    },
+    {
+        COMPONENT: <AddProduct />,
+        PATH: '/add-product'
+        
+    },
+    {
+        COMPONENT: <ProductDetails />,
+        PATH: '/product-details'
+    },
+    {
+        COMPONENT: <IndividualProductDetails />,
+        PATH: '/individual-product-details'
+    },
+    {
+        COMPONENT: <ProductDetails />,
         PATH: '/'
-    },
+    }
 
 ]

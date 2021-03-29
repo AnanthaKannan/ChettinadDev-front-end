@@ -40,7 +40,13 @@ export const cartColDef = [
         headerName: "URL",
         field: "vendorUrl",
         sortable: true,
-        filter: true
+        filter: true,
+        cellRenderer: 'RsButton',
+        cellRendererParams: {
+            clicked: function(field) {
+              alert(`${field} was clicked`);
+            },
+          },
     },
     {
         headerName: "Email",

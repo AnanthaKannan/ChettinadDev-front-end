@@ -7,7 +7,7 @@ export default function MyNavbar() {
 
       <div className='mb-2'>
 <Navbar className='bg-blue' expand="lg">
-  <Navbar.Brand href="#home" style={{'color': '#ffffff'}}>Chettinad Samayal</Navbar.Brand>
+  <Navbar.Brand href="#home" style={{'color': '#ffffff'}}>Chettinad</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
